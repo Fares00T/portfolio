@@ -1,13 +1,3 @@
-# drafts and prototypes: keep them local, not on the live site
-index-classic.html
-index-v1.html
-index-dark.html
-index-warm.html
-index-roadmap.html
-proposals.html
-proposals/
-
 # local secrets and Vercel settings
 .env*
 .vercel/
-.gitignore

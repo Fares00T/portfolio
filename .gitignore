@@ -1,11 +1,2 @@
 .vercel
 .env*
-
-# drafts and prototypes (local only, same as .vercelignore)
-index-classic.html
-index-v1.html
-index-dark.html
-index-warm.html
-index-roadmap.html
-proposals.html
-proposals/
