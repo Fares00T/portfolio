@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatic B2B billing at Okadoo, Fares Tinakiche</title>
+<meta name="description" content="Okadoo generates every B2B document automatically, from pro forma invoice to credit note, with exchanges and refunds across customer, supplier and admin.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111317'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3EFT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap"><a class="brand" href="../index.html">Fares Tinakiche</a><ul><li class="l"><a href="../index.html#work">Work</a></li><li class="l"><a href="../index.html#about">About</a></li><li class="l"><a href="../index.html#cv">CV</a></li><li><a class="lang" href="../fr/work/billing.html" hreflang="fr" lang="fr" title="Version française">FR</a></li><li><a class="btn" href="mailto:tinakiche.fa@gmail.com">Email me</a></li></ul></div></header>
+
+<main id="main">
+<article class="wrap narrow">
+  <a class="back" href="../index.html#work">&larr; All work</a>
+  <header class="cs-head cs-hero rv" style="--tint:#e5f5ef;--c:#2ba584"><div>
+    <span class="label">Okadoo, Maystro Delivery, 2026</span>
+    <h1>Automatic B2B billing, exchanges and refunds</h1>
+    <p class="lede">B2B customers need a full paper trail for every order. Okadoo now generates each document automatically as the order moves, including when part of a shipment comes back.</p>
+  </div>
+    <div class="cs-vis"><div class="tl3d" id="tl3d"><ol aria-label="Project timeline">
+      <li style="--n:0"><span class="k">Before</span><b>One order needed several documents, issued by hand</b></li>
+      <li style="--n:1"><span class="k">Needed</span><b>A full paper trail, including partial returns</b></li>
+      <li style="--n:2"><span class="k">Built</span><b>5 documents generated as the order moves</b></li>
+      <li style="--n:3" class="now"><span class="k">Now</span><b>Shipped across customer, supplier and admin</b></li>
+    </ol></div></div>
+  </header>
+
+  <dl class="meta rv">
+    <div><dt>My role</dt><dd>Product Manager</dd></div>
+    <div><dt>Team</dt><dd>6 engineers, 1 designer</dd></div>
+    <div><dt>Sides</dt><dd>Customer, supplier, admin</dd></div>
+    <div><dt>Status</dt><dd><span class="tag ok">Shipped</span></dd></div>
+  </dl>
+
+  <div class="tldr rv">
+    <div><h3>Problem</h3><p>One order needs several documents for the customer and the supplier, not a single receipt.</p></div>
+    <div><h3>My role</h3><p>Defined the document flow and the return rules, and led delivery across all three sides.</p></div>
+    <div class="out"><h3>Outcome</h3><b>5 documents</b><p>Generated automatically, from pro forma invoice to credit note.</p></div>
+  </div>
+
+  <div class="cs-body">
+    <h2 class="rv">Goal</h2>
+    <p class="rv">Every order should produce the documents customers and suppliers need for their accounts, without anyone creating them by hand.</p>
+
+    <h2 class="rv">What customers and suppliers needed</h2>
+    <p class="rv">A business buyer needs paperwork for its own accounting: a quote before buying, an invoice to pay, a delivery note to check the goods, and a credit note when something comes back. The supplier needs a purchase order to prepare the shipment. And returns are often partial: one damaged carton, not the whole order.</p>
+
+    <h2 class="rv">The document chain</h2>
+    <p class="rv">Each step of an order produces the document the next person needs.</p>
+    <div class="figure rv">
+      <ol class="chain">
+        <li><b>Pro forma invoice</b>To the customer, so they see the full cost before ordering</li>
+        <li><b>Purchase order</b>To the supplier, to place the order</li>
+        <li><b>Final invoice</b>To the customer, as the bill to pay</li>
+        <li><b>Delivery note</b>Handed to the customer with the delivery</li>
+        <li class="alt"><b>Credit note</b>Issued on a refund or return, for a full or a partial shipment</li>
+      </ol>
+    </div>
+    <p class="caption rv">Steps 1 to 4 follow every order. The credit note only appears when something comes back.</p>
+
+    <h2 class="rv">Exchanges and refunds</h2>
+    <p class="rv">Returns touch three parties, so we built one flow that all of them share and connected it to credit notes.</p>
+    <div class="figure rv">
+      <div class="sides3">
+        <div><b>Customer</b><span>Requests an exchange or a refund on an order</span></div>
+        <div><b>Supplier</b><span>Sees the request and handles the product side</span></div>
+        <div><b>Admin</b><span>Oversees and resolves every case</span></div>
+      </div>
+    </div>
+
+    <h2 class="rv">Decisions and trade-offs</h2>
+    <ul class="decisions rv">
+      <li><b>Generate documents automatically, not on request</b><span>Each document is created when the order reaches its step, so nobody has to remember to issue it.</span><span class="cost">Order statuses have to be accurate, because a wrong status issues the wrong document.</span></li>
+      <li><b>Handle partial returns from the start</b><span>A customer can send back the whole shipment or only part of it. The credit note covers exactly what came back.</span><span class="cost">Line-level returns are more work than whole-order refunds, so v1 took longer. Without them, every partial return would turn into manual work for finance.</span></li>
+      <li><b>One return flow for three sides</b><span>Customer, supplier and admin see the same case, which ties refunds and billing together.</span><span class="cost">Three interfaces to design and ship together instead of starting with admin only.</span></li>
+    </ul>
+
+    <h2 class="rv">Result</h2>
+    <p class="rv">Every Okadoo order now produces its documents automatically, and exchanges and refunds run through one flow shared by customer, supplier and admin.</p>
+
+    <h2 class="rv">What I'd do differently</h2>
+    <p class="rv">I'd bring finance in even earlier. Billing rules look simple until a partial return meets a discount, and those edge cases are cheaper to settle in the PRD than in QA.</p>
+
+    <a class="next-cs rv" href="bayti.html"><div><span>Next case study</span><b>Bayti, a real-estate marketplace</b></div><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="foot"><div class="wrap"><div><h2>Hiring a product manager? Let's talk.</h2><a class="mail" href="mailto:tinakiche.fa@gmail.com">tinakiche.fa@gmail.com</a></div><div class="actions"><a class="btn btn-light" href="https://www.linkedin.com/in/fares-tinakiche" target="_blank" rel="noopener">LinkedIn &#8599;</a><a class="btn btn-light" href="../assets/Fares_Tinakiche_CV.pdf" download>Download CV</a></div><small>Fares Tinakiche, Algiers, 2026</small></div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

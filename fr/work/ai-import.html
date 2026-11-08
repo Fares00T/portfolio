@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import de catalogue par IA chez Okadoo, Fares Tinakiche</title>
+<meta name="description" content="Les fournisseurs importent leur catalogue depuis un PDF, un fichier Excel ou leur site, et l'IA complète les informations et images manquantes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111317'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3EFT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="nav" id="nav"><div class="wrap"><a class="brand" href="../index.html">Fares Tinakiche</a><ul><li class="l"><a href="../index.html#work">Projets</a></li><li class="l"><a href="../index.html#about">Parcours</a></li><li class="l"><a href="../index.html#cv">CV</a></li><li><a class="lang" href="../../work/ai-import.html" hreflang="en" lang="en" title="English version">EN</a></li><li><a class="btn" href="mailto:tinakiche.fa@gmail.com">M'écrire</a></li></ul></div></header>
+
+<main id="main">
+<article class="wrap narrow">
+  <a class="back" href="../index.html#work">&larr; Tous les projets</a>
+  <header class="cs-head cs-hero rv" style="--tint:#fbeaf3;--c:#d95a9a"><div>
+    <span class="label">Okadoo, Maystro Delivery, 2026</span>
+    <h1>Import de catalogue par IA pour les fournisseurs</h1>
+    <p class="lede">Les fournisseurs apportent leur catalogue tel qu'ils l'ont déjà. Okadoo le transforme en fiches produit complètes, même quand des informations ou des photos manquent.</p>
+  </div>
+    <div class="cs-vis"><div class="tl3d" id="tl3d"><ol aria-label="Chronologie du projet">
+      <li style="--n:0"><span class="k">Avant</span><b>Des catalogues en PDF, tableurs et sites web, pleins de trous</b></li>
+      <li style="--n:1"><span class="k">Besoin</span><b>Un onboarding sans ressaisir tout un catalogue</b></li>
+      <li style="--n:2"><span class="k">Réalisé</span><b>L'IA complète les informations et trouve ou génère les photos</b></li>
+      <li style="--n:3" class="now"><span class="k">Auj.</span><b>Livré : import depuis 3 sources</b></li>
+    </ol></div></div>
+  </header>
+
+  <dl class="meta rv">
+    <div><dt>Mon rôle</dt><dd>Product Manager</dd></div>
+    <div><dt>Équipe</dt><dd>6 ingénieurs, 1 designer</dd></div>
+    <div><dt>Utilisateurs</dt><dd>800+ fournisseurs</dd></div>
+    <div><dt>Statut</dt><dd><span class="tag ok">Livré</span></dd></div>
+  </dl>
+
+  <div class="tldr rv">
+    <div><h3>Problème</h3><p>Les catalogues fournisseurs arrivent en PDF, en tableur ou via un site web, souvent incomplets et sans photos.</p></div>
+    <div><h3>Mon rôle</h3><p>Responsable de la fonctionnalité de la discovery au lancement : périmètre, PRD, priorités et livraison.</p></div>
+    <div class="out"><h3>Résultat</h3><b>3 sources</b><p>Les fournisseurs peuvent importer depuis un PDF, un fichier Excel ou leur propre site web.</p></div>
+  </div>
+
+  <div class="cs-body">
+    <h2 class="rv">Objectif</h2>
+    <p class="rv">Amener un nouveau fournisseur de l'inscription à un catalogue vendable sans lui faire tout ressaisir.</p>
+
+    <h2 class="rv">Ce dont les fournisseurs avaient besoin</h2>
+    <p class="rv">Les fournisseurs ont déjà un catalogue, mais sous la forme qui leur convient : un PDF envoyé à leurs clients, un fichier Excel ou leur propre site web. Les produits manquent souvent d'informations comme la description ou les caractéristiques, et beaucoup n'ont aucune photo. Tout ressaisir dans notre modèle était l'étape qui ralentissait l'onboarding.</p>
+
+    <h2 class="rv">Comment ça marche</h2>
+    <div class="figure rv">
+      <div class="flow">
+        <div class="c"><span>Catalogue PDF</span><span>Fichier Excel</span><span>Site du fournisseur</span></div>
+        <div class="arr" aria-hidden="true">&rarr;</div>
+        <div class="c"><span class="hub">Enrichissement par IA</span></div>
+        <div class="arr" aria-hidden="true">&rarr;</div>
+        <div class="c"><span>Champs manquants générés à partir des données disponibles</span><span>Images manquantes générées ou trouvées en ligne via le SKU et la référence</span><span>Produit prêt à publier</span></div>
+      </div>
+    </div>
+    <p class="caption rv">Le parcours d'import, du fichier du fournisseur à une fiche produit complète.</p>
+
+    <h2 class="rv">Décisions et compromis</h2>
+    <ul class="decisions rv">
+      <li><b>Accepter les formats que les fournisseurs utilisent déjà</b><span>Un catalogue PDF, un fichier Excel ou un lien vers leur site. Aucun nouveau modèle à remplir.</span><span class="cost">Trois sources désordonnées à analyser au lieu d'un modèle propre, ce qui est plus difficile à construire et à garder fiable.</span></li>
+      <li><b>Combler les trous plutôt que rejeter les données incomplètes</b><span>Quand il manque des informations sur un produit, l'IA les génère à partir des données disponibles.</span><span class="cost">Les informations générées peuvent être fausses. Nous avons accepté ce risque, car une fiche presque complète que le fournisseur peut corriger vaut mieux qu'une fiche vide qu'il ne terminera jamais.</span></li>
+      <li><b>Résoudre l'absence de photos grâce au SKU</b><span>Si un produit n'a pas d'image, le système en trouve une en ligne ou la génère, à partir du SKU et de la référence produit.</span><span class="cost">Une image trouvée ou générée peut ne pas correspondre exactement au produit. Pour une marketplace, une image proche reste préférable à un produit sans photo.</span></li>
+    </ul>
+
+    <h2 class="rv">Résultat</h2>
+    <p class="rv">Livré en 2026 et accessible aux 800+ fournisseurs d'Okadoo. Un fournisseur peut désormais passer du catalogue qu'il possède déjà à des fiches prêtes à publier, sans nouveau modèle à remplir.</p>
+
+    <h2 class="rv">Ce que je ferais autrement</h2>
+    <p class="rv">Je définirais les indicateurs de succès avant le lancement, pas après. Je suivrais ensuite trois choses : le délai entre l'inscription d'un fournisseur et son premier produit publié, la fréquence à laquelle les fournisseurs modifient les champs remplis par l'IA, et la part d'images trouvées en ligne par rapport aux images générées.</p>
+
+    <a class="next-cs rv" href="billing.html"><div><span>Étude de cas suivante</span><b>Facturation B2B, échanges et remboursements automatisés</b></div><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="foot"><div class="wrap"><div><h2>Vous recrutez un Product Manager ? Parlons-en.</h2><a class="mail" href="mailto:tinakiche.fa@gmail.com">tinakiche.fa@gmail.com</a></div><div class="actions"><a class="btn btn-light" href="https://www.linkedin.com/in/fares-tinakiche" target="_blank" rel="noopener">LinkedIn &#8599;</a><a class="btn btn-light" href="../../assets/Fares_Tinakiche_CV.pdf" download>Télécharger le CV</a></div><small>Fares Tinakiche, Alger, 2026</small></div></footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

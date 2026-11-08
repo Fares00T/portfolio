@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayti, a real-estate marketplace, Fares Tinakiche</title>
+<meta name="description" content="Bayti: a real-estate marketplace for Algeria with verified agencies, listing moderation and a workspace for agency teams.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111317'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3EFT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap"><a class="brand" href="../index.html">Fares Tinakiche</a><ul><li class="l"><a href="../index.html#work">Work</a></li><li class="l"><a href="../index.html#about">About</a></li><li class="l"><a href="../index.html#cv">CV</a></li><li><a class="lang" href="../fr/work/bayti.html" hreflang="fr" lang="fr" title="Version française">FR</a></li><li><a class="btn" href="mailto:tinakiche.fa@gmail.com">Email me</a></li></ul></div></header>
+
+<main id="main">
+<article class="wrap narrow">
+  <a class="back" href="../index.html#work">&larr; All work</a>
+  <header class="cs-head cs-hero rv" style="--tint:#fcece2;--c:#e8763a"><div>
+    <span class="label">Own product</span>
+    <h1>Bayti, a real-estate marketplace for Algeria</h1>
+    <p class="lede">Owners and agencies list homes, people search by region and budget, and a small team checks every agency and listing before it goes live.</p>
+  </div>
+    <div class="cs-vis"><div class="tl3d" id="tl3d"><ol aria-label="Project timeline">
+      <li style="--n:0"><span class="k">Before</span><b>Owners, agencies and reposted ads all looked the same</b></li>
+      <li style="--n:1"><span class="k">Needed</span><b>Knowing who is really behind a listing</b></li>
+      <li style="--n:2"><span class="k">Built</span><b>Verified agencies, reviewed listings, 4 roles</b></li>
+      <li style="--n:3" class="now"><span class="k">Now</span><b>Live demo, every role works</b></li>
+    </ol></div></div>
+  </header>
+
+  <dl class="meta rv">
+    <div><dt>My role</dt><dd>Product, data model, build</dd></div>
+    <div><dt>Stack</dt><dd>React, Node.js, MySQL</dd></div>
+    <div><dt>Users</dt><dd>4 roles</dd></div>
+    <div><dt>Status</dt><dd><a class="tag ok" style="text-decoration:none" href="https://bayti-real-estate-website-demo-iota.vercel.app/" target="_blank" rel="noopener">Live demo &#8599;</a></dd></div>
+  </dl>
+
+  <div class="tldr rv">
+    <div><h3>Problem</h3><p>On property sites, a private owner, a licensed agency and someone reposting ads all look the same.</p></div>
+    <div><h3>My role</h3><p>Designed the roles, permissions and data model, and built the product end to end.</p></div>
+    <div class="out"><h3>Outcome</h3><b>Live demo</b><p>Every role works. Switch between them with the panel at the bottom left. Password: demo1234</p></div>
+  </div>
+
+  <div class="cs-body">
+    <h2 class="rv">Goal</h2>
+    <p class="rv">Build a property marketplace where a home seeker can tell who is behind a listing and trust that it is real.</p>
+
+    <h2 class="rv">What was wrong with existing sites</h2>
+    <p class="rv">On general classifieds sites, anyone can post a property. A buyer can't tell a real owner from an agent or from someone reposting old ads, the same home shows up several times at different prices, and nothing confirms that an "agency" is licensed.</p>
+
+    <h2 class="rv">One product, four ways in</h2>
+    <div class="shots rv">
+      <figure class="wide"><img src="../assets/search.jpg" width="1800" height="1125" loading="lazy" alt="Bayti search results with a map of Algeria"><figcaption>Home seekers search by region, type and budget, on a list and a map.</figcaption></figure>
+      <figure><img src="../assets/seller.jpg" width="1800" height="1125" loading="lazy" alt="Private seller account at the limit of three listings"><figcaption>Private sellers get three active listings, then a choice.</figcaption></figure>
+      <figure><img src="../assets/agency_inquiries.jpg" width="1800" height="1125" loading="lazy" alt="Agency inquiries inbox with visit requests"><figcaption>Agencies manage visit requests and assign agents.</figcaption></figure>
+      <figure class="wide"><img src="../assets/admin_applications.jpg" width="1800" height="1125" loading="lazy" alt="Admin review of agency applications"><figcaption>The Bayti team checks each agency's licence before it gets a verified badge.</figcaption></figure>
+    </div>
+
+    <h2 class="rv">Decisions and trade-offs</h2>
+    <ul class="decisions rv">
+      <li><b>Cap private sellers at three active listings</b><span>Someone with many listings is working as an agent. At the limit they can archive one or apply as an agency, where their licence gets checked.</span><span class="cost">A genuine owner with four properties hits the limit too. Three is enough for a family renting or selling a few homes, and low enough to catch people running an agency without a licence.</span></li>
+      <li><b>Verify agencies against their state licence</b><span>Agencies upload their licence number and business registration, and a person reviews them. The verified badge only means something if it points to a real licence.</span><span class="cost">Manual review slows agency sign-up and needs staff time that a growing marketplace has to pay for.</span></li>
+      <li><b>Review every listing before it is public</b><span>Duplicates, wrong prices and misleading photos hurt a young marketplace more than a small catalogue. New listings stay hidden until the team publishes them.</span><span class="cost">Fewer listings, and a delay before sellers see theirs live. I chose trust over volume.</span></li>
+      <li><b>Make it reviewable in thirty seconds</b><span>The demo ships with sample data and a role switcher, so anyone can try every role without registering.</span></li>
+    </ul>
+
+    <h2 class="rv">What I'd do differently</h2>
+    <p class="rv">I'd test the rules with real sellers and agents before building them. The three-listing cap and the review step are reasonable guesses, but guesses all the same.</p>
+    <p class="rv">With real users, the first things I'd measure are how long reviews take and how many sellers hit the listing cap.</p>
+
+    <a class="next-cs rv" href="payments.html"><div><span>Next case study</span><b>Online payments at Okadoo</b></div><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="foot"><div class="wrap"><div><h2>Hiring a product manager? Let's talk.</h2><a class="mail" href="mailto:tinakiche.fa@gmail.com">tinakiche.fa@gmail.com</a></div><div class="actions"><a class="btn btn-light" href="https://www.linkedin.com/in/fares-tinakiche" target="_blank" rel="noopener">LinkedIn &#8599;</a><a class="btn btn-light" href="../assets/Fares_Tinakiche_CV.pdf" download>Download CV</a></div><small>Fares Tinakiche, Algiers, 2026</small></div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

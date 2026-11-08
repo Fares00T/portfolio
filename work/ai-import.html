@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI catalogue import at Okadoo, Fares Tinakiche</title>
+<meta name="description" content="Suppliers import their catalogue from a PDF, Excel or their website, and AI fills missing data and images.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111317'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3EFT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap"><a class="brand" href="../index.html">Fares Tinakiche</a><ul><li class="l"><a href="../index.html#work">Work</a></li><li class="l"><a href="../index.html#about">About</a></li><li class="l"><a href="../index.html#cv">CV</a></li><li><a class="lang" href="../fr/work/ai-import.html" hreflang="fr" lang="fr" title="Version française">FR</a></li><li><a class="btn" href="mailto:tinakiche.fa@gmail.com">Email me</a></li></ul></div></header>
+
+<main id="main">
+<article class="wrap narrow">
+  <a class="back" href="../index.html#work">&larr; All work</a>
+  <header class="cs-head cs-hero rv" style="--tint:#fbeaf3;--c:#d95a9a"><div>
+    <span class="label">Okadoo, Maystro Delivery, 2026</span>
+    <h1>AI catalogue import for suppliers</h1>
+    <p class="lede">Suppliers bring their catalogue the way they already have it. Okadoo turns it into complete listings, even when details or photos are missing.</p>
+  </div>
+    <div class="cs-vis"><div class="tl3d" id="tl3d"><ol aria-label="Project timeline">
+      <li style="--n:0"><span class="k">Before</span><b>Catalogues arrived as PDFs, sheets and websites, full of gaps</b></li>
+      <li style="--n:1"><span class="k">Needed</span><b>Onboarding without retyping a whole catalogue</b></li>
+      <li style="--n:2"><span class="k">Built</span><b>AI fills missing details and finds or generates photos</b></li>
+      <li style="--n:3" class="now"><span class="k">Now</span><b>Shipped: import from 3 sources</b></li>
+    </ol></div></div>
+  </header>
+
+  <dl class="meta rv">
+    <div><dt>My role</dt><dd>Product Manager</dd></div>
+    <div><dt>Team</dt><dd>6 engineers, 1 designer</dd></div>
+    <div><dt>Users</dt><dd>800+ suppliers</dd></div>
+    <div><dt>Status</dt><dd><span class="tag ok">Shipped</span></dd></div>
+  </dl>
+
+  <div class="tldr rv">
+    <div><h3>Problem</h3><p>Supplier catalogues come as PDFs, spreadsheets or websites, often with missing details and no photos.</p></div>
+    <div><h3>My role</h3><p>Owned the feature from discovery to launch: scope, PRD, priorities and delivery.</p></div>
+    <div class="out"><h3>Outcome</h3><b>3 sources</b><p>Suppliers can import from a PDF, an Excel file or their own website.</p></div>
+  </div>
+
+  <div class="cs-body">
+    <h2 class="rv">Goal</h2>
+    <p class="rv">Get a new supplier from sign-up to a sellable catalogue without making them retype it.</p>
+
+    <h2 class="rv">What suppliers needed</h2>
+    <p class="rv">Suppliers already have a catalogue, but in whatever form suits them: a PDF they send to clients, an Excel sheet, or their own website. Products often lack details like descriptions or specifications, and many have no photo at all. Retyping everything into our template was the step that slowed onboarding.</p>
+
+    <h2 class="rv">How it works</h2>
+    <div class="figure rv">
+      <div class="flow">
+        <div class="c"><span>PDF catalogue</span><span>Excel sheet</span><span>Supplier website</span></div>
+        <div class="arr" aria-hidden="true">&rarr;</div>
+        <div class="c"><span class="hub">AI enrichment</span></div>
+        <div class="arr" aria-hidden="true">&rarr;</div>
+        <div class="c"><span>Missing fields generated from the data we have</span><span>Missing images generated or found online by SKU and reference</span><span>Product ready to publish</span></div>
+      </div>
+    </div>
+    <p class="caption rv">The import flow, from the supplier's file to a complete product listing.</p>
+
+    <h2 class="rv">Decisions and trade-offs</h2>
+    <ul class="decisions rv">
+      <li><b>Accept the formats suppliers already use</b><span>A PDF catalogue, an Excel sheet or a link to their website. No new template to fill in.</span><span class="cost">Three messy inputs to parse instead of one clean template, which is harder to build and to keep accurate.</span></li>
+      <li><b>Fill the gaps instead of rejecting incomplete data</b><span>When a product is missing information, AI generates it from the data that is available.</span><span class="cost">Generated details can be wrong. We accepted that risk because a near-complete listing the supplier can correct beats an empty one they never finish.</span></li>
+      <li><b>Solve missing photos with the SKU</b><span>If a product has no image, the system finds one online or generates it, using the SKU and product reference.</span><span class="cost">A found or generated image may not match the exact product. For a marketplace, a close image is still better than a product with no photo.</span></li>
+    </ul>
+
+    <h2 class="rv">Result</h2>
+    <p class="rv">Shipped in 2026 and available to Okadoo's 800+ suppliers. A supplier can now go from the catalogue they already have to listings ready to publish, without a new template to fill in.</p>
+
+    <h2 class="rv">What I'd do differently</h2>
+    <p class="rv">I'd define the success metrics before launch, not after. Next I'd track three things: time from supplier sign-up to first published product, how often suppliers edit AI-filled fields, and the share of images found online versus generated.</p>
+
+    <a class="next-cs rv" href="billing.html"><div><span>Next case study</span><b>Automatic B2B billing, exchanges and refunds</b></div><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="foot"><div class="wrap"><div><h2>Hiring a product manager? Let's talk.</h2><a class="mail" href="mailto:tinakiche.fa@gmail.com">tinakiche.fa@gmail.com</a></div><div class="actions"><a class="btn btn-light" href="https://www.linkedin.com/in/fares-tinakiche" target="_blank" rel="noopener">LinkedIn &#8599;</a><a class="btn btn-light" href="../assets/Fares_Tinakiche_CV.pdf" download>Download CV</a></div><small>Fares Tinakiche, Algiers, 2026</small></div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
