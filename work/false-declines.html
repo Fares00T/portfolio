@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-39ELJ73JEP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-39ELJ73JEP');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reducing false payment declines, Fares Tinakiche</title>
+<meta name="description" content="A product case exercise: a payment gateway started declining legitimate customers after Hosted Checkout became the default. How I would find the cause, fix it and prove it worked.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111317'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3EFT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+  <!-- Vercel Web Analytics (private dashboard in the Vercel project) -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap"><a class="brand" href="../index.html">Fares Tinakiche</a><ul><li class="l"><a href="../index.html#work">Work</a></li><li class="l"><a href="../index.html#about">About</a></li><li class="l"><a href="../index.html#cv">CV</a></li><li><a class="lang" href="../fr/work/false-declines.html" hreflang="fr" lang="fr" title="Version française">FR</a></li><li><a class="btn" href="mailto:tinakiche.fa@gmail.com">Email me</a></li></ul></div></header>
+
+<main id="main">
+<article class="wrap narrow">
+  <a class="back" href="../index.html#work">&larr; All work</a>
+  <header class="cs-head cs-hero rv" style="--tint:#efeafd;--c:#6a3df0"><div>
+    <span class="label">Product case exercise, 2026</span>
+    <h1>Reducing false payment declines</h1>
+    <p class="lede">A payment gateway started declining customers who had done nothing wrong. How I would find the cause, fix it without weakening fraud protection, and prove it worked.</p>
+  </div>
+    <div class="cs-vis"><div class="tl3d" id="tl3d"><ol aria-label="How the case is structured">
+      <li style="--n:0"><span class="k">Signal</span><b>Fraud flags up for 6 weeks, most of them legitimate</b></li>
+      <li style="--n:1"><span class="k">Cause</span><b>Hosted Checkout makes customers retry like fraudsters</b></li>
+      <li style="--n:2"><span class="k">Fix</span><b>Clear reasons, controlled retries, 3-D Secure on the 3rd try</b></li>
+      <li style="--n:3" class="now"><span class="k">Proof</span><b>Gated rollout, 5% to 100%, fraud held flat</b></li>
+    </ol></div></div>
+  </header>
+
+  <dl class="meta rv">
+    <div><dt>My role</dt><dd>Product Manager</dd></div>
+    <div><dt>Format</dt><dd>Written brief, 24-slide deck</dd></div>
+    <div><dt>Domain</dt><dd>Payments, fraud, checkout</dd></div>
+    <div><dt>Type</dt><dd><span class="tag ex">Case exercise</span></dd></div>
+  </dl>
+
+  <div class="tldr rv">
+    <div><h3>Problem</h3><p>Since Hosted Checkout became the default, banks flag many more payments as fraud. Most turn out to be real customers.</p></div>
+    <div><h3>My approach</h3><p>Validate the cause first, mitigate for the worst-hit merchants now, then fix the recovery flow the banks react to.</p></div>
+    <div class="out ex"><h3>Recommendation</h3><b>Fix the retry, not the bank</b><p>We can't change how banks score a payment. We can change what our checkout sends them.</p></div>
+  </div>
+
+  <div class="cs-body">
+    <h2 class="rv">The situation</h2>
+    <p class="rv">Merchants use our online payment gateway to take payments on their websites. Over the past six weeks the monitoring dashboard has shown a sharp rise in transactions classified as fraudulent. Merchants and support report the same thing from two sides: customers can't complete their payments, and merchants see lower checkout conversion and lost sales.</p>
+    <div class="callout rv"><b>Initial finding</b><p>A large share of the transactions flagged as fraud were later confirmed to be legitimate purchases.</p></div>
+    <p class="rv">That hurts three groups. Customers get declined, then retry or abandon. Merchants lose sales and trust in the gateway. And the business loses conversion while our fraud risk score with partner banks and our processing fees go up. So the goal is not just fewer declines: <strong>reduce false declines while keeping fraud protection strong.</strong></p>
+
+    <h2 class="rv">What changed</h2>
+    <p class="rv">Six weeks ago, Hosted Checkout became the default. Before, merchants built their own checkout and called our API. Now customers pay on a page we host.</p>
+    <div class="figure rv">
+      <div class="ba">
+        <div><h3>Before</h3><ol class="fl"><li>Customer</li><li>Merchant checkout</li><li>Payment gateway API</li><li>Bank / fraud system</li></ol></div>
+        <div class="now"><h3>6 weeks ago</h3><ol class="fl"><li class="key">Customer</li><li class="key">Our Hosted Checkout</li><li class="key">Bank / fraud system</li></ol></div>
+      </div>
+    </div>
+    <p class="caption rv">We now own the payment experience and the recovery UX. The bank still owns the fraud decision.</p>
+
+    <h2 class="rv">What the evidence actually says</h2>
+    <ul class="rv">
+      <li>Fraud classification is done by external partner bank systems, not by us.</li>
+      <li>Banks treat many payment attempts in a short window as suspicious.</li>
+      <li>Banks treat repeated card-detail changes in one checkout session as suspicious.</li>
+      <li>Hosted Checkout became the default around the time the problem appeared.</li>
+    </ul>
+    <div class="callout warn rv"><b>Correlation is not causation</b><p>The timing points at Hosted Checkout, but timing alone is not proof. I would validate the link before committing to a solution.</p></div>
+
+    <h2 class="rv">Four explanations, one to chase first</h2>
+    <p class="rv">I ranked them by two things: how well the case supports them, and how much is within our control.</p>
+    <ul class="hyp rv">
+      <li class="lead"><span class="l">A</span><div><b>Our checkout changed how people pay<span class="chase">Chase first</span></b><span>It went live when the problem started, and the behaviour it creates is exactly what the banks act on.</span></div></li>
+      <li><span class="l">B</span><div><b>The information we send the bank changed</b><span>The hosted page may send different device, address or merchant details. Banks score on those.</span></div></li>
+      <li><span class="l">C</span><div><b>The bank changed its rules</b><span>Possible, but we can't see their model. We would have to ask them.</span></div></li>
+      <li><span class="l">D</span><div><b>Different customers or merchants</b><span>Possible, and cheap to check: split the data and see if the problem sits in one group.</span></div></li>
+    </ul>
+    <p class="rv">Inside hypothesis A, four things in the flow could each produce one of the two behaviours banks penalise, more attempts in a short window or changed card details in one session:</p>
+    <ul class="rv">
+      <li>The error message doesn't say what went wrong, so the customer guesses and tries again.</li>
+      <li>The form clears after a decline, so they retype everything, which the bank reads as changed card details.</li>
+      <li>Nothing stops a double-click, so one click can send two attempts.</li>
+      <li>The session times out mid-payment, so they start over.</li>
+    </ul>
+    <p class="rv">These are candidates, not findings. Each one is something I would check in the flow during validation.</p>
+
+    <h2 class="rv">Before building: validate the cause</h2>
+    <div class="figure rv">
+      <div class="steps s4" style="margin:0">
+        <div><span class="n">01</span><b>Before vs. after Hosted Checkout</b><span>Previous 6 weeks against the current 6: payment success rate, false decline rate, retry rate, card-change rate and attempts per session.</span></div>
+        <div><span class="n">02</span><b>Map the payment journey</b><span>Count how often attempt, decline, retry, card change, retry, decline, abandon happens, in merchant checkout and in Hosted Checkout. Did the pattern grow?</span></div>
+        <div><span class="n">03</span><b>Segment the data</b><span>Find where the problem is concentrated.</span><span class="pills"><i>Bank</i><i>Merchant</i><i>Payment method</i><i>Country</i><i>Device</i><i>Card type</i></span></div>
+        <div><span class="n">04</span><b>Talk to people</b><span>Customers and merchants on why they retry. Data on whether the false-decline number is measured right. Partner banks on how many retries they tolerate.</span></div>
+      </div>
+    </div>
+    <div class="callout rv"><b>Validation decision</b><p>If the data, user behaviour and stakeholder feedback all point to Hosted Checkout and repeated attempts, proceed with the recovery fix. If not, go back to B, C and D.</p></div>
+
+    <h2 class="rv">What I'm assuming</h2>
+    <div class="figure rv">
+      <div class="assume">
+        <div style="--bc:var(--ink)"><h3>What we know</h3><p>Banks say too many attempts in a short time looks suspicious. They don't say how many.</p></div>
+        <div style="--bc:#d6293e"><h3>What I assume</h3><p class="big">4 attempts in 5 to 10 minutes</p><p class="red">My number, not theirs. The first thing I'd check against our data and with the banks.</p></div>
+        <div style="--bc:#6a3df0"><h3>What we do</h3><p>Slow the customer down on the <strong>3rd</strong> attempt, before the line is reached. Ship it as a configurable policy, not a hard-coded number.</p></div>
+      </div>
+    </div>
+    <p class="rv">I also assume Hosted Checkout today shows no clear decline reason and has no 3-D Secure step-up on a retry. Validation answers that in a day. If it already does one of them, that part of the fix drops and the retry controls carry the work.</p>
+
+    <h2 class="rv">The recovery flow, before and after</h2>
+    <div class="figure rv">
+      <div class="ba">
+        <div class="was"><h3>Current experience</h3><ol class="fl">
+          <li class="bad">Payment declined</li>
+          <li>Customer doesn't know what happened</li>
+          <li>Retry</li>
+          <li>Change card</li>
+          <li>Retry again</li>
+          <li class="bad">Repeated attempts + card changes</li>
+          <li class="bad">Likely false decline</li>
+        </ol></div>
+        <div class="now"><h3>Proposed experience</h3><ol class="fl">
+          <li>Payment declined</li>
+          <li class="key">Clear reason + next best action<small>Retry payment, or use another card</small></li>
+          <li class="key">New card details? Review them first<small>before submitting again</small></li>
+          <li>Still failing after the 3rd attempt</li>
+          <li class="key">Next attempt asks for 3-D Secure<small>the bank asks the customer to confirm it's them</small></li>
+          <li class="split"><span class="win">Approved<small>payment completes</small></span><span>Still declined<small>cool down, or another method</small></span><span>Not supported<small>cool down, or another method</small></span></li>
+        </ol></div>
+      </div>
+    </div>
+
+    <h2 class="rv">What changes in the product</h2>
+    <div class="figure rv">
+      <table class="cmp">
+        <thead><tr><th scope="col">Problem</th><th scope="col">Product response</th></tr></thead>
+        <tbody>
+          <tr><td>Customers don't understand why a payment failed</td><td>Clear reason + next best action</td></tr>
+          <tr><td>Customers change card details again and again</td><td>Ask them to review the new details before submitting again</td></tr>
+          <tr><td>One click can send two payment attempts</td><td>One click, one payment. A double-click or refresh never reaches the bank twice</td></tr>
+          <tr><td>Customers retry rapidly</td><td>Request a 3-D Secure challenge on the retry, not on the first attempt</td></tr>
+          <tr><td>The payment is declined even after verifying</td><td>Short cooldown, so we stop adding suspicious attempts</td></tr>
+          <tr><td>A legitimate customer still wants to pay</td><td>Offer another payment method, with the checkout session preserved</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="rv">Mitigate now, fix the cause in parallel</h2>
+    <p class="rv">Customers are failing today, so the mitigation doesn't wait for validation.</p>
+    <div class="figure rv">
+      <div class="tracks">
+        <div class="t1"><h3>Track 1 &middot; Mitigate now</h3><p>Route the worst-hit merchants and customers back to API Checkout<small>The dashboard already shows where the declines sit. The fallback is removed once the fix is live.</small></p></div>
+        <div class="t2"><h3>Track 2 &middot; Fix the cause</h3><ol class="phases">
+          <li>Validate<small>Is it really our checkout?</small></li>
+          <li>Fix Hosted Checkout<small>Reasons, checks, recovery paths</small></li>
+          <li>Experiment<small>Improved vs. current</small></li>
+          <li>Scale<small>5% to 100%, gated</small></li>
+        </ol></div>
+        <div class="t3"><h3>Rollout</h3>
+          <div class="rollout" aria-label="Rollout steps: 5%, 25%, 50%, 100% of traffic"><div style="--h:12%">5%</div><div style="--h:32%">25%</div><div style="--h:55%">50%</div><div style="--h:100%">100%</div></div>
+          <div class="rollout-k"><span>catch anything broken</span><span>monitor</span><span>monitor</span><span>only if the numbers hold</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="rv">How we'll know it worked</h2>
+    <p class="rv">Two numbers to move, two that must not get worse, two that tell me early, and two that only move on the banks' timetable.</p>
+    <div class="figure rv">
+      <div class="metrics">
+        <div style="--bc:#6a3df0"><h3>Move</h3><b>False decline rate &darr;</b><span>Fewer real customers rejected</span><b>Payment success rate &uarr;</b><span>More legitimate payments through</span></div>
+        <div style="--bc:#d6293e"><h3>Must not get worse</h3><b>Actual fraud &harr; / &darr;</b><span>Still catching real fraud</span><b>Payment errors &harr; / &darr;</b><span>Nothing broken technically</span></div>
+        <div style="--bc:var(--ink)"><h3>Tells us early</h3><b>Attempts per session &darr;</b><span>The behaviour banks penalise</span><b>Card-change rate &darr;</b><span>The second signal banks watch</span></div>
+        <div style="--bc:var(--muted)"><h3>Business</h3><b>Processing fees &darr;</b><span>The real payoff, on the banks' timetable</span><b>Risk score with banks &darr;</b><span>Reviewed quarterly with Partnerships</span></div>
+      </div>
+    </div>
+    <div class="callout rv"><b>My early read</b><p>If attempts per session hasn't moved in 48 hours, I don't wait for the false-decline number. The fix isn't doing its job.</p></div>
+
+    <h2 class="rv">Decisions and trade-offs</h2>
+    <ul class="decisions rv">
+      <li><b>Balanced recovery, not strict limits or unlimited retries</b><span>Strict limits stop legitimate customers from recovering. Unlimited retries send more suspicious attempts to the bank. Controlled retries with clear guidance sit between the two.</span><span class="cost">Verification and cooldowns are friction, and friction costs conversion. We accept it only on the tail of sessions already heading for a decline. A short wait beats a hard refusal.</span></li>
+      <li><b>3-D Secure only from the 3rd attempt</b><span>Asking the bank to confirm the customer gives a real customer a way through.</span><span class="cost">Some customers drop at the challenge, some banks don't support it, and passing it doesn't override the bank's own fraud decline. So it fires late, we measure how many finish it, and I'd test it with partner banks first.</span></li>
+      <li><b>Move the worst-hit merchants back to API Checkout now</b><span>It protects their conversion while the real fix is built.</span><span class="cost">Moving merchants twice is disruptive. We do it only while the fix is being built and remove the fallback the day it's live.</span></li>
+      <li><b>Accept that the bank still decides</b><span>We can fix our checkout and the bank can still say no.</span><span class="cost">Part of the outcome is outside our control, which is why the early metrics are behavioural ones we do control.</span></li>
+    </ul>
+
+    <h2 class="rv">What I watch after launch, and when</h2>
+    <div class="figure rv">
+      <div class="steps" style="margin:0">
+        <div><span class="n">First 24 hours</span><b>Is anything broken?</b><span>Payment errors, fraud alerts, payment success rate. If one goes wrong, I stop the rollout the same day.</span></div>
+        <div><span class="n">First 7 days</span><b>Did behaviour change?</b><span>Attempts per session and card-change rate. A week is enough to see retry behaviour move.</span></div>
+        <div><span class="n">14 to 30 days</span><b>Did the banks change their answer?</b><span>False decline rate and actual fraud, cut by bank, merchant, country and method. Chargebacks arrive late, so these take weeks.</span></div>
+      </div>
+    </div>
+    <div class="figure rv">
+      <p style="margin:0 0 14px;font-size:14.5px;color:var(--ink)"><strong>Change in false decline rate by partner bank</strong> <span class="muted">(illustrative)</span></p>
+      <div class="bars">
+        <span>Overall</span><div class="track"><span class="bar neg" style="--w:20%"></span><span class="v" style="--w:20%">-12%</span></div>
+        <span>Bank A</span><div class="track"><span class="bar neg" style="--w:40%"></span><span class="v" style="--w:40%">-24%</span></div>
+        <span>Bank B</span><div class="track"><span class="bar zero"></span><span class="v">0%, unchanged</span></div>
+        <span>Bank C</span><div class="track"><span class="bar pos" style="--w:13%"></span><span class="v" style="--w:13%">+8%, investigate</span></div>
+      </div>
+      <div class="bars-k"><span>&larr; fewer false declines</span><span>more &rarr;</span></div>
+    </div>
+    <p class="caption rv">An overall drop can hide a bank that got worse. Bank C gets its own investigation.</p>
+
+    <h2 class="rv">If the results don't improve</h2>
+    <p class="rv">Check these in order, so the cheap checks come first:</p>
+    <ol class="order rv">
+      <li><div><b>Are the numbers right?</b><span>Are we counting false declines the same way as before?</span></div></li>
+      <li><div><b>Did the behaviour change?</b><span>If retries and card changes didn't drop, the fix isn't working yet.</span></div></li>
+      <li><div><b>What did the bank do?</b><span>Retries can drop while declines stay flat. That gap is on the bank's side.</span></div></li>
+      <li><div><b>Then decide</b><span>Keep fixing the flow, roll it back, or go back to the other explanations.</span></div></li>
+    </ol>
+
+    <h2 class="rv">What I own after release</h2>
+    <ul class="rv">
+      <li><strong>Share the results</strong> with merchants, Risk, Data and leadership, including what didn't improve.</li>
+      <li><strong>Go back to the banks</strong> with the better false-decline numbers and ask them to review our risk score and fees.</li>
+      <li><strong>Turn off the workaround:</strong> remove the API Checkout fallback and temporary flags so they don't become permanent.</li>
+      <li><strong>Change how we ship defaults.</strong> This started because a default went live without a test behind it. The next one gets one.</li>
+    </ul>
+
+    <p class="note rv">This is a product case exercise answering a written brief about a hypothetical payment gateway. It uses no real company data, and the bank chart is illustrative.</p>
+    <a class="deck-link rv" href="../assets/Reducing_False_Payment_Declines.pdf" target="_blank" rel="noopener"><div><b>See the full deck</b><span>24 slides, PDF</span></div><span class="go">Open PDF &#8599;</span></a>
+
+    <a class="next-cs rv" href="payments.html"><div><span>Next case study</span><b>Online payments at Okadoo</b></div><span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
+</main>
+
+<footer class="foot"><div class="wrap"><div><h2>Hiring a product manager? Let's talk.</h2><a class="mail" href="mailto:tinakiche.fa@gmail.com">tinakiche.fa@gmail.com</a></div><div class="actions"><a class="btn btn-light" href="https://www.linkedin.com/in/fares-tinakiche" target="_blank" rel="noopener">LinkedIn &#8599;</a><a class="btn btn-light" href="../assets/Fares_Tinakiche_CV.pdf" download>Download CV</a></div><small>Fares Tinakiche, Algiers, 2026</small></div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
